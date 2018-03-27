@@ -11,6 +11,12 @@ namespace Calculator
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the calculator!");
+            Console.WriteLine("==========================");
+            Console.WriteLine("Please enter the operator: ");
+
+            string operatorString = Console.ReadLine();
+            
+
             Console.WriteLine("Please enter a number");
 
             string firstString = "";
@@ -23,7 +29,32 @@ namespace Calculator
             secondString = Console.ReadLine();
             int secondValue = int.Parse(secondString);
 
-            Console.WriteLine(firstValue * secondValue);
+            if (operatorString == "+")
+            {
+                Console.WriteLine(firstValue + secondValue);
+            }
+
+            else if (operatorString == "-")
+            {
+                Console.WriteLine(firstValue - secondValue);
+            }
+
+            else if (operatorString == "/")
+            {
+               
+                Console.WriteLine(firstValue / secondValue);
+            }
+
+            else if (operatorString == "*")
+            {
+                
+                Console.WriteLine(firstValue * secondValue);
+            }
+
+            else
+            {
+                Console.WriteLine("I'm sorry the operator you entered didn't work please try again");
+            }
 
             Console.ReadLine();
         }

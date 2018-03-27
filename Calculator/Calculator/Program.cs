@@ -15,8 +15,20 @@ namespace Calculator
             Console.WriteLine("Please enter the operator: ");
 
             string operatorString = Console.ReadLine();
-            
 
+            Console.WriteLine("How many numbers do you want to " + operatorString + "?");
+
+            int number = int.Parse(Console.ReadLine());
+
+            int[] numbers = new int[number];
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.WriteLine("please enter value " + (i + 1) + " :");
+                numbers[i] = int.Parse(Console.ReadLine());
+            }
+
+            /*
             Console.WriteLine("Please enter a number");
 
             string firstString = "";
@@ -28,34 +40,37 @@ namespace Calculator
             string secondString = "";
             secondString = Console.ReadLine();
             int secondValue = int.Parse(secondString);
+            */
 
-            if (operatorString == "+")
+            int answer = numbers[0];
+
+            for (int index = 1; index < number; index++)
+                if (operatorString == "+")
             {
-                Console.WriteLine(firstValue + secondValue);
+                    answer = answer+numbers[index];
+                
             }
 
             else if (operatorString == "-")
-            {
-                Console.WriteLine(firstValue - secondValue);
-            }
+                {
+                    answer = answer-numbers[index];
 
-            else if (operatorString == "/")
-            {
-               
-                Console.WriteLine(firstValue / secondValue);
-            }
+                }
 
-            else if (operatorString == "*")
-            {
-                
-                Console.WriteLine(firstValue * secondValue);
-            }
+                else if (operatorString == "/")
+                {
+                    answer = answer/numbers[index];
 
-            else
-            {
-                Console.WriteLine("I'm sorry the operator you entered didn't work please try again");
-            }
+                }
 
+                else if (operatorString == "*")
+                {
+                    answer = answer*numbers[index];
+
+                }
+
+
+            Console.WriteLine("The answer is: " + answer);
             Console.ReadLine();
         }
     }

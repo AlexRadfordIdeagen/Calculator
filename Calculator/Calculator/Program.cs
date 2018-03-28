@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator;
 
 
 namespace Calculator
@@ -20,6 +19,7 @@ namespace Calculator
         {
 
             PrintWelcomeMessage();
+            
            
             while (true)
             {
@@ -59,6 +59,7 @@ namespace Calculator
         {
             Console.WriteLine("Welcome to the calculator!");
             Console.WriteLine("==========================");
+            new Logger().Clear();
         }
    
     }

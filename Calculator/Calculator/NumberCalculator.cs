@@ -53,7 +53,6 @@ namespace Calculator
             if (operatorString == "+")
             {
                 answer = num1 + num2;
-
             }
 
             else if (operatorString == "-")
@@ -74,7 +73,14 @@ namespace Calculator
 
             }
 
+            string num1Log = num1.ToString();
+            string  num2Log = num2.ToString();
+            string answerLog = answer.ToString();
+            
             Console.WriteLine("The answer is: " + answer);
+
+            new Logger().Log(string.Join(num1Log, operatorString, num2Log), answerLog);
+
         }
     }
 }

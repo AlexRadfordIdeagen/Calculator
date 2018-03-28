@@ -8,6 +8,10 @@ namespace Calculator
 {
     class Program
     {
+        private const int NumberCalculator = 1;
+        private const int DateCalculator = 2;
+
+
         static void Main(string[] args)
 
 
@@ -17,74 +21,126 @@ namespace Calculator
            
             while (true)
             {
-                PerformOneCalculation();
+                
+                int calculationMode = AskForCalculationMode();
+
+                if (calculationMode == NumberCalculator)
+                {
+                    PerformOneCalculation();
+                    
+                }
+                else
+                {
+                    PerformOneDateCalculation();
+                }
+           
 
             }
          
 
         }
-          /*
 
-                Console.WriteLine("Please enter the operator: ");
-
-            string operatorString = Console.ReadLine();
-
-            Console.WriteLine("How many numbers do you want to " + operatorString + "?");
-
-            int number = int.Parse(Console.ReadLine());
-
-            int[] numbers = new int[number];
-
-            for (int i = 0; i < numbers.Length; i++)
+        private static void PerformOneDateCalculation()
+        {
+            while (true)
             {
-                Console.WriteLine("please enter value " + (i + 1) + " :");
-                numbers[i] = int.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter a date:");
+
+                string input = Console.ReadLine();
+                DateTime answer;
+                if (DateTime.TryParse(input, out answer))
+                {
+                    Console.WriteLine("Please enter the number of days to add:");
+                    int addInput = int.Parse(Console.ReadLine());
+                    answer = answer.AddDays(addInput);
+                    Console.WriteLine("The answer is: {0:d}", answer);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("I'm sorry that didn't work please try again");
+
+                }
             }
+           
+  
+
+        }
+
+        private static int AskForCalculationMode()
+        {
+            int answer;
+            Console.WriteLine("Which calculator mode do you want?");
+            Console.WriteLine(" 1) Numbers");
+            Console.WriteLine(" 2) Dates");
+            answer = int.Parse(Console.ReadLine());
+            return answer;
 
             
-            Console.WriteLine("Please enter a number");
+        }
 
-            string firstString = "";
-            firstString = Console.ReadLine();
-            int firstValue = int.Parse(firstString);
+        /*
 
-            Console.WriteLine("Please enter a second number");
+     Console.WriteLine("Please enter the operator: ");
 
-            string secondString = "";
-            secondString = Console.ReadLine();
-            int secondValue = int.Parse(secondString);
-            
+ string operatorString = Console.ReadLine();
 
-            int answer = numbers[0];
+ Console.WriteLine("How many numbers do you want to " + operatorString + "?");
 
-            for (int index = 1; index < number; index++)
-                if (operatorString == "+")
-            {
-                    answer = answer+numbers[index];
-                
-            }
+ int number = int.Parse(Console.ReadLine());
 
-            else if (operatorString == "-")
-                {
-                    answer = answer-numbers[index];
+ int[] numbers = new int[number];
 
-                }
+ for (int i = 0; i < numbers.Length; i++)
+ {
+     Console.WriteLine("please enter value " + (i + 1) + " :");
+     numbers[i] = int.Parse(Console.ReadLine());
+ }
 
-                else if (operatorString == "/")
-                {
-                    answer = answer/numbers[index];
 
-                }
+ Console.WriteLine("Please enter a number");
 
-                else if (operatorString == "*")
-                {
-                    answer = answer*numbers[index];
+ string firstString = "";
+ firstString = Console.ReadLine();
+ int firstValue = int.Parse(firstString);
 
-                }
+ Console.WriteLine("Please enter a second number");
 
-        */
-         
-        
+ string secondString = "";
+ secondString = Console.ReadLine();
+ int secondValue = int.Parse(secondString);
+
+
+ int answer = numbers[0];
+
+ for (int index = 1; index < number; index++)
+     if (operatorString == "+")
+ {
+         answer = answer+numbers[index];
+
+ }
+
+ else if (operatorString == "-")
+     {
+         answer = answer-numbers[index];
+
+     }
+
+     else if (operatorString == "/")
+     {
+         answer = answer/numbers[index];
+
+     }
+
+     else if (operatorString == "*")
+     {
+         answer = answer*numbers[index];
+
+     }
+
+*/
+
+
 
         private static void PrintWelcomeMessage()
         {
@@ -105,6 +161,8 @@ namespace Calculator
                 numberString = Console.ReadLine();
                 if (int.TryParse(numberString, out number))
                 {
+                    
+
                     return number;
 
                 }
@@ -114,9 +172,10 @@ namespace Calculator
                     Console.WriteLine("I'm sorry that didn't work please enter an integer");
 
                 }
+
             }
-            
-       
+
+
         }
 
         private static string GetOperatorChar()

@@ -9,10 +9,23 @@ namespace Calculator
     class Program
     {
         static void Main(string[] args)
+
+
         {
-            Console.WriteLine("Welcome to the calculator!");
-            Console.WriteLine("==========================");
-            Console.WriteLine("Please enter the operator: ");
+
+            PrintWelcomeMessage();
+           
+            while (true)
+            {
+                PerformOneCalculation();
+
+            }
+         
+
+        }
+          /*
+
+                Console.WriteLine("Please enter the operator: ");
 
             string operatorString = Console.ReadLine();
 
@@ -28,7 +41,7 @@ namespace Calculator
                 numbers[i] = int.Parse(Console.ReadLine());
             }
 
-            /*
+            
             Console.WriteLine("Please enter a number");
 
             string firstString = "";
@@ -40,7 +53,7 @@ namespace Calculator
             string secondString = "";
             secondString = Console.ReadLine();
             int secondValue = int.Parse(secondString);
-            */
+            
 
             int answer = numbers[0];
 
@@ -69,9 +82,81 @@ namespace Calculator
 
                 }
 
+        */
+         
+        
+
+        private static void PrintWelcomeMessage()
+        {
+            Console.WriteLine("Welcome to the calculator!");
+            Console.WriteLine("==========================");
+        }
+
+        private static int GetNumber(string input)
+        {
+            while (true)
+            {
+
+
+                string numberString = "";
+                int number = 0;
+                Console.WriteLine("Input your " + input + " number");
+
+                numberString = Console.ReadLine();
+                if (int.TryParse(numberString, out number))
+                {
+                    return number;
+
+                }
+
+                else
+                {
+                    Console.WriteLine("I'm sorry that didn't work please enter an integer");
+
+                }
+            }
+            
+       
+        }
+
+        private static string GetOperatorChar()
+        {
+            Console.WriteLine("Please enter your operator");
+            string operatorString = Console.ReadLine();
+            return operatorString;
+        }
+        private static void PerformOneCalculation()
+        {
+            string operatorString = GetOperatorChar();
+            int num1 = GetNumber("first");
+            int num2 = GetNumber("second");
+            int answer = 0;
+
+            if (operatorString == "+")
+            {
+                answer = num1 + num2;
+
+            }
+
+            else if (operatorString == "-")
+            {
+                answer = num1 - num2;
+
+            }
+
+            else if (operatorString == "/")
+            {
+                answer = num1 / num2;
+
+            }
+
+            else if (operatorString == "*")
+            {
+                answer = num1 * num2;
+
+            }
 
             Console.WriteLine("The answer is: " + answer);
-            Console.ReadLine();
         }
     }
 }

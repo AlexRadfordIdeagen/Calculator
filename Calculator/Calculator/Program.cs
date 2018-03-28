@@ -59,7 +59,7 @@ namespace Calculator
         {
             Console.WriteLine("Welcome to the calculator!");
             Console.WriteLine("==========================");
-            new Logger().Clear();
+           // new Logger().Clear();
         }
    
     }

@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Calculator
 {
@@ -15,7 +16,7 @@ namespace Calculator
 
                 string numberString = "";
                 int number = 0;
-                Console.WriteLine("Input your " + input + " number");
+                Console.WriteLine(input);
 
                 numberString = Console.ReadLine();
                 if (int.TryParse(numberString, out number))
@@ -37,51 +38,97 @@ namespace Calculator
 
         }
 
-        private static string GetOperatorChar()
+        public static int? AskForOptionalNumber(string message)
+        {
+            while (true)
+            {
+                Console.Write(message);
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(input))
+                {
+                    return null;
+                }
+
+                int number;
+                if (int.TryParse(input, out number))
+                {
+                    return number;
+                }
+            }
+        }
+            private static string GetOperatorChar()
         {
             Console.WriteLine("Please enter your operator");
             string operatorString = Console.ReadLine();
             return operatorString;
         }
-        public  void PerformOneCalculation()
+
+        public static List<int> GetNumberArray()
+        {
+            Console.WriteLine("Enter your number");
+            List<int> numbers = new List<int>();
+
+            while (true)
+            
+
+            
+            {
+                int? number = AskForOptionalNumber("  Please enter the next number: ");
+
+                if (number.HasValue)
+                {
+                    numbers.Add(number.Value);
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+            return numbers;
+        
+        }
+
+        public void PerformOneCalculation()
         {
             string operatorString = GetOperatorChar();
-            int num1 = GetNumber("first");
-            int num2 = GetNumber("second");
-            int answer = 0;
+            var numbers = GetNumberArray();
+            int answer = numbers[0];
 
-            if (operatorString == "+")
+            for (int index = 1; index < numbers.Count; index++)
             {
-                answer = num1 + num2;
+                if (operatorString == "*")
+                {
+
+                    answer = numbers.Aggregate((p, next) => next * p);
+                }
+                else if (operatorString == "/")
+                {
+                    answer = numbers.Aggregate((p, next) => next / p);
+                }
+                else if (operatorString == "+")
+                {
+                    answer = numbers.Aggregate((p, next) => next + p);
+                }
+                else if (operatorString == "-")
+                {
+                    answer = numbers.Aggregate((p, next) => next - p);
+                }
+
+
+                //  string num1Log = num1.ToString();
+                //  string num2Log = num2.ToString();
+                //  string answerLog = answer.ToString();
+
+
+
+                // new Logger().Log(string.Join(num1Log, operatorString, num2Log), answerLog);
+
             }
-
-            else if (operatorString == "-")
-            {
-                answer = num1 - num2;
-
-            }
-
-            else if (operatorString == "/")
-            {
-                answer = num1 / num2;
-
-            }
-
-            else if (operatorString == "*")
-            {
-                answer = num1 * num2;
-
-            }
-
-            string num1Log = num1.ToString();
-            string  num2Log = num2.ToString();
-            string answerLog = answer.ToString();
-            
             Console.WriteLine("The answer is: " + answer);
-
-            new Logger().Log(string.Join(num1Log, operatorString, num2Log), answerLog);
-
         }
     }
 }
+
 

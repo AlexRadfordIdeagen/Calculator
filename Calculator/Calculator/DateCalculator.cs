@@ -22,7 +22,7 @@ namespace Calculator
                     answer = answer.AddDays(addInput);
                     string answerLog = answer.ToString();
                     Console.WriteLine("The answer is: {0:d}", answer);
-                    new Logger().Log(string.Join(dateLog, " + ", addLog), answerLog);
+                   // new Logger().Log(string.Join(dateLog, " + ", addLog), answerLog);
 
                     break;
                 }

@@ -57,7 +57,7 @@ namespace Calculator
                 }
             }
         }
-            private static string GetOperatorChar()
+        private static string GetOperatorChar()
         {
             Console.WriteLine("Please enter your operator");
             string operatorString = Console.ReadLine();
@@ -70,9 +70,9 @@ namespace Calculator
             List<int> numbers = new List<int>();
 
             while (true)
-            
 
-            
+
+
             {
                 int? number = AskForOptionalNumber("  Please enter the next number: ");
 
@@ -87,7 +87,7 @@ namespace Calculator
 
             }
             return numbers;
-        
+
         }
 
         public void PerformOneCalculation()
@@ -98,23 +98,31 @@ namespace Calculator
 
             for (int index = 1; index < numbers.Count; index++)
             {
-                if (operatorString == "*")
+                switch (operatorString)
                 {
+                    case "-":
+                        answer = numbers.Skip(1).Aggregate((p, next) => next - p);
 
-                    answer = numbers.Aggregate((p, next) => next * p);
+                        break;
+                    case "+":
+                        answer = numbers.Aggregate((p, next) => next + p);
+
+                        break;
+                    case "*":
+                        answer = numbers.Aggregate(1, (p, next) => next * p);
+
+                        break;
+                    case "/":
+                        answer = numbers.Skip(1).Aggregate((p, next) => next / p);
+
+                        break;
+
+                    default:
+                        throw new InvalidOperatorException(operatorString);
+
                 }
-                else if (operatorString == "/")
-                {
-                    answer = numbers.Aggregate((p, next) => next / p);
-                }
-                else if (operatorString == "+")
-                {
-                    answer = numbers.Aggregate((p, next) => next + p);
-                }
-                else if (operatorString == "-")
-                {
-                    answer = numbers.Aggregate((p, next) => next - p);
-                }
+
+
 
 
                 //  string num1Log = num1.ToString();

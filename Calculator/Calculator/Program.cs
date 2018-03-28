@@ -8,34 +8,56 @@ using System.Threading.Tasks;
 namespace Calculator
 {
     class Program
-    {
-        private const int NumberCalculator = 1;
-        private const int DateCalculator = 2;
 
+   
+    {
+        public enum CalculationMode
+        {
+            NumberCalculator = 1,
+            DateCalculator = 2
+        }
+
+      //  private  const int NumberCalculator = 1;
+        //private  const int DateCalculator = 2;
+        
 
         static void Main(string[] args)
 
 
         {
-
+            
             PrintWelcomeMessage();
             
            
             while (true)
             {
-                
-                int calculationMode = AskForCalculationMode();
 
-                if (calculationMode == NumberCalculator)
+                try
                 {
-                    new NumberCalculator().PerformOneCalculation();
-                    
+                    int calculationMode = AskForCalculationMode();
+                    int numCalculator = (int)CalculationMode.NumberCalculator;
+                    int dateCalculator = (int)CalculationMode.DateCalculator;
+                    if (calculationMode == numCalculator) 
+                    {
+                        new NumberCalculator().PerformOneCalculation();
+
+                    }
+                    else if (calculationMode == dateCalculator)
+                    {
+                        new DateCalculator().PerformOneDateCalculation();
+                    }
+
+                
                 }
-                else
+              
+                
+                catch (InvalidOperatorException exception)
                 {
-                   new DateCalculator().PerformOneDateCalculation();
+
+                    Console.WriteLine(exception.Message + " Please try again");
+                    Console.WriteLine();
                 }
-           
+
 
             }
          

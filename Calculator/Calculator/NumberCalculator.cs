@@ -101,7 +101,7 @@ namespace Calculator
                 switch (operatorString)
                 {
                     case "-":
-                        answer = numbers.Skip(1).Aggregate((p, next) => next - p);
+                        answer = numbers.Aggregate((p, next) =>  p - next);
 
                         break;
                     case "+":
@@ -113,8 +113,7 @@ namespace Calculator
 
                         break;
                     case "/":
-                        answer = numbers.Skip(1).Aggregate((p, next) => next / p);
-
+                        answer = numbers.Aggregate((p, next) => p / next);
                         break;
 
                     default:
